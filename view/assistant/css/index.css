@@ -1,0 +1,384 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+.content1 .header{
+    width: 100%;
+    height: 150px;
+    /*background-color: #F1F2F7;*/
+    border-bottom: none;
+}
+.content1 .headerleft {
+    width: 62%;
+    height: 80px;
+    padding-top: 22px;
+    padding-left: 20px;
+}
+.content1 .headerleft > div{
+    margin-left: 10px;
+}
+.content1 .formstyle{
+    width: 120px;
+}
+.content1 .formstyle ::before{
+    content:'';
+}
+
+.content1 .headerinput{
+    width: 300px;
+}
+.content1 .headerText{
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    padding-right: 0;
+    margin-left: 32px;
+}
+.content1 .headerText > span{
+    font-size: 18px;
+    line-height: 35px;
+    color: #000000;
+}
+.content1 .headerright{
+    width: 37%;
+    height: 80px;
+    padding-top: 22px;
+}
+
+.content1 .btns >button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    margin: 0 20px 0 35px;
+    float:left;
+}
+.content1 .echo{
+    width:100%;
+    /*height:798px;*/
+    padding-top:100px;
+    padding-bottom:20px;
+
+
+}
+.content1 .echo .tab{
+    width:80%;
+    margin:0 auto;
+    margin-top:55px;
+    text-align: center;
+}
+.content1 .echo .tab th{
+    text-align: center;
+    /*font-weight: normal;*/
+}
+.echo .tab td{
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.content1 .tab button{
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0px 5px;
+    display: inline-block;
+}
+
+.content2{
+    width:100%;
+    height:100%;
+    padding: 30px 50px 160px;
+    display: none;
+}
+
+.content2 .bookname h3{
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+}
+.content2 .bookname h3 span{
+    display: inline-block;
+    width:0px;
+    height:30px;
+    margin-right: 40px;
+    border-left: 4px solid gray;
+}
+.content2 .bookname .books {
+    height:30px;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 18px;
+}
+.content2 .bookname .books  input{
+    outline: none;
+    font-size: 16px;
+    border: 1px solid gray;
+}
+.content2 .judge,.judges{
+    margin-top:30px;
+    padding-left: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.content2 .bookname .judge input{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.content2 .bookname .judges input{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.content2 .grades,.produce,.jiedian,.press{
+    margin-top:30px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.content2 .grades .formstyle,.headerText{
+    margin-left: 30px;
+}
+.content2 .produce .formstyle,.headerText{
+    margin-left: 30px;
+}
+.content2 .jiedian input{
+    outline: none;
+    border: 1px solid gray;
+}
+.content2 .produces{
+    margin-top:30px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.content2 .produces .formstyle,.headerText{
+    margin-left: 30px;
+}
+.content2 .press .formstyle,.headerText{
+    margin-left: 30px;
+}
+.content2 .files,.radios{
+    margin-top:30px;
+    font-size: 18px;
+    margin-left: 30px;
+}
+.content2 .files div:first-child span:last-child{
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    color: #fff;
+    background: #31b0d5;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+.content2 .file{
+    width: 260px;
+    height:150px;
+    background: #D0D0D0;
+    margin-left: 30px;
+    margin-top: 30px;
+    text-align: center;
+
+}
+.content2 .file img{
+    width:260px;
+    height:150px;
+}
+.content2 .radios div:first-child span:last-child{
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+    color: #fff;
+    background: #31b0d5;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+.content2 .btns{
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px;
+    margin-bottom: 40px;
+}
+.content2 .btns .btn{
+    width:130px;
+    height:45px;
+    margin: 0px 20px;
+}
+.jiedian2{
+    margin-top: 0px;
+}
+.uncompre {
+    /*display: none;*/
+}
+.compre {
+    display: none;
+}
+.compre .add{
+    font-size: 16px;
+    width:68px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    border-radius:4px ;
+    border: 1px solid #ccc;
+}
+.compre .add:hover{
+    background: #ccc;
+    cursor: pointer;
+}
+.compre .grades,.produce,.press,.discipline{
+    margin-top:15px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.compre .discipline .formstyle,.headerText{
+    margin-left: 30px;
+}
+.compre .grades .formstyle,.headerText{
+    margin-left: 30px;
+}
+.compre .jiedian input{
+    outline: none;
+    border: 1px solid gray;
+}
+
+.compre .produce .formstyle,.headerText{
+    margin-left: 30px;
+}
+.compre .produces{
+    margin-top:55px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.compre .produces .formstyle,.headerText{
+    margin-left: 30px;
+}
+.compre .press .formstyle,.headerText{
+    margin-left: 30px;
+}
+.discipline i{
+    margin-left: 20px;
+    font-size: 18px;
+    color:#D0D0D0;
+}
+.discipline i:hover{
+    color: red;
+    cursor:pointer;
+}
+#content2{
+    display: none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:rgba(0,0,0,.7);
+    z-index: 1000;
+}
+.echo1{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    width:50%;
+    height:50%;
+    margin:auto;
+    background-color:#fff;
+    overflow: auto;
+}
+.echo1 .tab1{
+    text-align: center;
+}
+.echo1 .tab1 td{
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.echo1 .tab1 button{
+    background: none;
+    outline: none;
+    border:none;
+}
+.echo1 div{
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+}
+.echo1 div button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    margin: 0 20px 0 20px;
+    text-align: center;
+}
+#content1{
+    /*display: none;*/
+}
+#content3{
+    display: none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:rgba(0,0,0,.7);
+    z-index: 1000;
+}
+.echo2{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    width:31%;
+    height:30%;
+    margin:auto;
+    background-color:#fff;
+    overflow: hidden;
+    padding: 10px;
+}
+.echo2 .imgs1{
+  float: left;
+    width:48%;
+    height:100%;
+    text-align: center;
+}
+
+.echo2 .imgs2{
+  float: right;
+    width:48%;
+    height:100%;
+    text-align: center;
+}
+.echo2 img{
+    width:200px;
+    height:200px;
+}
+.echo2 div h2{
+    margin: 18px auto;
+    text-align: center;
+}
+.infos{
+    position: absolute;
+    left: 664px;
+    top:720px;
+    width: 100px;
+    height: 40px;
+    opacity: 0.8;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    pointer-events: none;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
+}

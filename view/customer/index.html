@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/kkpager_blue.css"/>
+</head>
+<body>
+<div class="content">
+   <div class="content1">
+       <div class="inquire">
+           <div class="pull-left">
+               <lable>日期：</lable><input id="d4311" class="Wdate startTime" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})"/>
+               <span class="change"></span><input id="d4312" class="Wdate endTime" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})"/>
+           </div>
+           <div class="pull-left">
+               <div class="headerText pull-left"><span>反馈类型：</span></div>
+               <div class="formstyle pull-left">
+                   <select class="form-control status">
+                       <option value="">全部</option>
+                       <option value="1">已查看</option>
+                       <option value="0">未查看</option>
+                   </select>
+               </div>
+           </div>
+           <div class="pull-left">
+               <div class="headerText pull-left"><span>用户类型：</span></div>
+               <div class="formstyle pull-left">
+                   <select class="form-control userType">
+                       <option value="">全部</option>
+                       <option value="2">教师</option>
+                       <option value="1">学生</option>
+                   </select>
+               </div>
+           </div>
+
+       </div>
+       <div class="btns">
+           <button  type="button" class="btn btn-info">查询</button>
+           <button  type="button" class="btn btn-info">重置</button>
+       </div>
+       <div class="echo ">
+           <table class="table table-bordered table-hover tab">
+               <tr>
+                   <th>序号</th>
+                   <th>用户Id</th>
+                   <th>姓名</th>
+                   <th>手机号</th>
+                   <th>内容</th>
+                   <th>时间</th>
+                   <th>用户类型</th>
+                   <th>状态</th>
+                   <th>操作</th>
+               </tr>
+           </table>
+       </div>
+       <div id="kkpager"></div>
+   </div>
+<!--详情-->
+   <div class="content2">
+       <div class="info">
+           <ul class="infolist">
+               <li><span>用户姓名：</span><span class="keyvalue">单小楠</span></li>
+               <li><span>用户类型：</span><span class="keyvalue">>学生</span></li>
+               <li><span>手机号：</span><span class="keyvalue">>XXXXXX</span></li>
+               <li><span>提交时间：</span><span class="keyvalue">>xxxxxxxxxx</span></li>
+           </ul>
+       </div>
+       <div class="feedback">
+           <h4>反馈内容：</h4>
+           <div class="text keyvalue">
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+           </div>
+       </div>
+       <div class="addinfo">
+           <div><span>申请学校名称：</span><span class="shooleName keyvalue">XXXXXXXXXXXXXX</span></div>
+           <div><span>学段：</span><span class="greads keyvalue">小学，初中，高中</span></div>
+       </div>
+       <div class="closed">
+           <span class="btn btn-info">关闭</span>
+       </div>
+   </div>
+</div>
+</body>
+</html>
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<script src="../../scripts/path.js"></script>
+<script src="js/index.js"></script>
+<script src="../../scripts/common.js"></script>
+<script src="../../scripts/kkpager.js"></script>
+<script src="../../My97DatePicker/WdatePicker.js"></script>
+<script src="../../scripts/layer.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>

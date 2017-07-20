@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="css/usermanage.css">
+    <link rel="stylesheet" href="css/schoolmanage.css">
+    <link rel="stylesheet" href="css/schoolmanagerAdd.css">
+    <link rel="stylesheet" href="../../css/kkpager_blue.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <div class="headerleft pull-left ">
+        <div class="headerText pull-left"><span>搜索方式：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="headerLeftSEL">
+                <option value="1">手机号码</option>
+                <option value="2">姓名</option>
+                <option value="3">用户id</option>
+            </select>
+        </div>
+        <div class="headerinput input-group pull-left">
+            <!--<span class="input-group-addon" id="sizing-addon1">@</span>-->
+            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+        </div>
+    </div>
+    <!--三级联动-->
+    <div class="headerright pull-right">
+        <div class="headerText pull-left"><span>选择学校：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="selProvice">
+                <option value="省/市">省/市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selCity">
+                <option value="市">市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selCounty">
+                <option value="区/县">区/县</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selSchool">
+                <option value="选择学校">选择学校</option>
+            </select>
+        </div>
+    </div>
+    <!--查询重置按钮-->
+    <div class="btns">
+        <button  type="button" class="btn btn-info btnSearch">查询</button>
+        <button  type="button" class="btn btn-info btnReset">重置</button>
+        <button  type="button" class="btn btn-info newButton">新增</button>
+    </div>
+</div>
+<div class="content">
+    <div class="contenttable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>学校</th>
+                <th>学校编码</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+<!--学校管理员新增-->
+<div class="addManager">
+    <div class="formtable">
+        <form action="" class="form-inline">
+            <div class="form-group schoolUsername">
+                <label for="username">姓名：</label>
+                <input type="username" class="form-control" id="username" placeholder="请输入姓名">
+            </div>
+            <br>
+            <div class="form-group schoolNum">
+                <label for="phone">手机号：</label>
+                <input type="text" class="form-control" id="phone" placeholder="请输入手机号码">
+            </div>
+            <br>
+            <div class="form-group schoolSelect">
+                <span style="font-weight: 700;">选择学校：&nbsp</span>
+                <select class="form-control" id="selProvice1">
+                    <option value="省/市">省/市</option>
+                </select>
+                <select class="form-control" id="selCity1">
+                    <option value="市">市</option>
+                </select>
+                <select class="form-control" id="selCounty1">
+                    <option value="区/县">区/县</option>
+                </select>
+                <select class="form-control" id="selSchool1">
+                    <option value="学校">学校</option>
+                </select>
+                 <!--<div class="headerText pull-left" id="schoolselect"><span>选择学校：</span></div>
+                 <div class="amendthree">
+                   <div class="formstyle pull-left">
+                       <select class="form-control" id="selProvice1">
+                           <option>省/市</option>
+                       </select>
+                   </div>
+                   <div class="formstyle pull-left">
+                       <select class="form-control pull-left" id="selCity1">
+                           <option>市</option>
+                       </select>
+                   </div>
+                   <div class="formstyle pull-left">
+                       <select class="form-control pull-left" id="selCounty1">
+                           <option>区/县</option>
+                       </select>
+                   </div>
+                   <div class="formstyle pull-left">
+               </div>
+                    <select class="form-control pull-left" id="selSchool1">
+                        <option>选择学校</option>
+                    </select>
+                </div>-->
+            </div>
+            <br>
+            <div class="form-group schoolCode">
+                <label for="schoolNumber">学校编码：</label>
+                <input type="text" class="form-control" id="schoolNumber" placeholder="请输入学校编码">
+            </div>
+            <br>
+            <button type="button" class="btn btn-info cancelBtn">取消</button>
+            <button type="submit" class="btn btn-info addBtn">创建</button>
+        </form>
+    </div>
+</div>
+<!--学校管理员详情-->
+<div class="managerDetil">
+    <div class="managerDetilTable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>学校id</th>
+                <th>学校区域</th>
+                <th>学校</th>
+            </tr>
+        </table>
+    </div>
+    <button class="btn btn-info managerBack">返回</button>
+</div>
+<!--管理员详情 修改 删除-->
+<div class="schoolmanageAmend">
+    <div class="formtable">
+        <form action="" class="form-inline">
+            <div class="form-group schoolUsername">
+                <label for="usernameAmend">姓 名：</label>
+                <input type="username" class="form-control" id="usernameAmend" placeholder="请输入姓名">
+            </div>
+            <br>
+            <div class="form-group schoolNum">
+                <label for="passwordAmend">&nbsp;&nbsp;&nbsp;密 码：</label>
+                <input type="password" class="form-control" id="passwordAmend" placeholder="请输入密码">
+            </div>
+            <br>
+            <div class="form-group schoolNum">
+                <label for="mobileAmend">&nbsp;&nbsp;&nbsp;手 机：</label>
+                <input type="text" class="form-control" id="mobileAmend" placeholder="请输入手机">
+            </div>
+            <br>
+            <div class="form-group schoolSelect">
+                <span style="font-weight: 700;">选择学校：&nbsp</span>
+                <select class="form-control" id="selProvice2">
+                    <option value="省/市">省/市</option>
+                </select>
+                <select class="form-control" id="selCity2">
+                    <option value="市">市</option>
+                </select>
+                <select class="form-control" id="selCounty2">
+                    <option value="区/县">区/县</option>
+                </select>
+                <select class="form-control" id="selSchool2">
+                    <option value="学校">学校</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group schoolCode">
+                <label for="schoolNumberAmend">学校编码：</label>
+                <input type="text" class="form-control" id="schoolNumberAmend" placeholder="请输入学校编码">
+            </div>
+            <br>
+            <button type="button" class="btn btn-info cancelBtnAmend">取消</button>
+            <button type="submit" class="btn btn-info addBtnAmend">修改</button>
+        </form>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js/base.js"></script>
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../login/js/md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="../../scripts/kkpager.js"></script>
+<script type="text/javascript" src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/schoolmanage.js"></script>
+<script type="text/javascript" src="js/schoolmanagerAdd.js"></script>
+<script type="text/javascript">
+    /*//学校管理员详情 修改 删除*/
+    $(function(){
+        var $table = $('.contenttable table');
+        var $amend = $('.managerAmend');
+        var $delete = $('.managerDelete');
+        var $back = $('.managerBack');
+        var $detiltable = $('.managerDetilTable table');
+
+        var $amendPage = $('.schoolmanageAmend');//修改页
+        var $detil  = $('.managerDetil');
+        var $btnAmend = $('.addBtnAmend');
+        var $schoolid = '';
+        var $selprovince = $('#selProvice2');
+        var $selcity = $('#selCity2');
+        var $selCounty = $('#selCounty2');
+        var $selschool = $('#selSchool2');
+        var url = '/boss/common/get_area';
+        var params = {//获取详情参数
+            "access_token": '',
+            "mobile": "",
+            "password": ""
+        };
+        var paramD = { // 删除参数
+            "access_token": "",
+            "id": ""
+        };
+        var paramA = { // 修改参数
+            "access_token": "",
+            "id": "1",
+           /* "password": " ",	//可选（md5加密）
+            "fullName": "",			//可选
+            "mobile": "",			//可选
+            "schoolId": '', 			//可选
+            "schoolCode": ""			//可选*/
+        };
+        var shoolsobj = {};//渲染修改页参数集合
+        params.access_token = window.sessionStorage.getItem("access_token");
+        paramD.access_token = window.sessionStorage.getItem("access_token");
+        paramA.access_token = window.sessionStorage.getItem("access_token");
+        //获取详情
+        $table.delegate('.check','click',function(){
+            $('.header').hide();
+            $('.content').hide();
+            $('.managerDetil').show();
+            $('.managerDetilTable tr:not(:first)').remove();
+            params.mobile = $(this).parent().parent().attr('mobile');
+            params.password = $(this).parent().parent().attr('password');
+            $.ajax({
+                url:basepath + '/boss/schoolManager/detail',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(params)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        var item = data.result;
+                        /*paramA.id = item.id;*/
+                        var trs = '';
+                        trs += '<tr> <td>'+ 1 + '</td><td>'+ item.id + '</td> <td>' + item.fullName + '</td> <td>' + item.mobile + '</td> <td>' + item.schoolId + '</td> <td>' + item.areaName + '</td><td>' + item.schoolName + '</td></tr>'
+                        $detiltable.append(trs);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+
+        });
+
+        $('#mobileAmend').blur(function(){
+            if(this.value.trim()){
+                var  re = /^1\d{10}$/;
+                if(!re.test(this.value.trim())){
+                    tip('手机号码格式错误,请重新输入');
+                    $(this).val('');
+                    return
+                }
+            }
+        });
+
+         //删除delete
+        $table.delegate('.delete','click',function(){
+
+            paramD.id = $(this).parent().parent().attr('id');
+            /*var statusStr = $(this).parent().parent().attr('status');*/
+            var delorrenew = '';
+            if ($(this).parent().parent().attr('status') == 0){
+                paramD.status = 1;
+                delorrenew = "恢复";
+            }else {
+                paramD.status = 0;
+                delorrenew = "删除";
+            }
+            layer.open({
+                content: '您确定要'+ delorrenew +'吗？'
+                ,btn: ['确定', '取消']
+                , style: 'width:200px;height:90px'
+                ,yes: function(){
+                    deleteSchool(paramD);
+                }
+            });
+
+        });
+        function deleteSchool(paramsD){
+            $.ajax({
+                url:basepath + '/boss/schoolManager/delete',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(paramD)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        if(paramD.status == 1){
+                            tip('恢复成功');
+                        }else {
+                            tip('删除成功');
+                        }
+                        delete paramD.status;
+                        delete paramD.id;
+                        window.setTimeout(function(){
+                            $('.btnSearch').click();
+                        },2000);
+
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        }
+        //返回
+        $back.on('click',function(){
+            $('.header').show();
+            $('.content').show();
+            $('.managerDetil').hide();
+        });
+
+        //修改￥￥￥￥￥￥￥￥￥￥￥￥￥￥
+        $table.delegate('.modify','click',function(){
+            $('.content').hide();
+            $('.header').hide();
+            $amendPage.show();
+            $detil.hide();
+            shoolsobj.fullName = $(this).parent().parent().attr('fullName');//存储详细信息用于渲染修改页
+            shoolsobj.password = $(this).parent().parent().attr('password');
+            shoolsobj.id = $(this).parent().parent().attr('id');
+            shoolsobj.mobile = $(this).parent().parent().attr('mobile');
+            shoolsobj.schoolId = $(this).parent().parent().attr('schoolId');
+            shoolsobj.schoolCode = $(this).parent().parent().attr('schoolCode');
+            shoolsobj.schoolCode = $(this).parent().parent().attr('schoolCode');
+            var areaName = $(this).parent().parent().attr('areaName');//回显省市县所需数据
+            var areaId = $(this).parent().parent().attr('areaId');
+            var schoolId = $(this).parent().parent().attr('schoolId');
+            var schoolName = $(this).parent().parent().attr('schoolName');
+            var proID = $(this).parent().parent().attr("provinceId");
+            var cityName = $(this).parent().parent().attr("cityName");
+            var proName = $(this).parent().parent().attr("provinceName");
+
+            console.log(areaName,areaId,schoolId,schoolName);
+            paramA = shoolsobj;
+            paramA.access_token = window.sessionStorage.getItem("access_token");
+            $('#usernameAmend').val(shoolsobj.fullName);
+            $('#schoolNumberAmend').val(shoolsobj.schoolCode);
+            $('#mobileAmend').val(shoolsobj.mobile);
+            $('#selCounty2 option:first').text(areaName);//回显省市区
+            $('#selSchool2 option:first').text(schoolName);
+            $('#selCity2 option:first').text(cityName);
+            $('#selProvice2 option:first').text(proName);
+            $('#selCity2').attr("disabled","true");
+            $('#selCounty2').attr("disabled","true");
+            $('#selSchool2').attr("disabled","true");
+            /*$("#selProvice2 option[value=" + proID + "]").prop("selected","selected");*/
+
+        });
+        //获取初始化市id
+        function getAmendCtyId(a){
+            $.ajax({
+                url:basepath + url,
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(a)},
+                success:function(data){
+                    console.log(data);
+                    /*$.each(data.result,function(index,item){
+                        var options = '<option value="' + item.areaId + '">' + item.areaName + '</option>;';
+                        b.append(options);
+                    })*/
+                }
+            });
+        }
+        //取消修改
+        $(".cancelBtnAmend").on('click',function(){
+            $amendPage.hide();
+            $('.header').show();
+            $('.content').show();
+            $('.managerDetil').hide();
+            clearID();
+        });
+        //修改中
+        $('#selSchool2').change(function(){
+            $schoolid = this.value;
+        });
+        /*获取页面输入数据*/
+        $('#usernameAmend').blur(function(){
+
+        });
+
+        $btnAmend.on('click',function(event){
+            event.preventDefault();
+            if($('#usernameAmend').val().trim()!== ''){
+                paramA.fullName = $('#usernameAmend').val().trim();
+            }
+            if($('#passwordAmend').val().trim() != ''){
+                paramA.password = hex_md5($('#passwordAmend').val().trim());
+            }
+            if($('#mobileAmend').val().trim() != ''){
+                paramA.mobile = $('#mobileAmend').val().trim();
+            }
+            if($('#schoolNumberAmend').val().trim() != ''){
+                paramA.schoolCode = $('#schoolNumberAmend').val().trim();
+            }
+            if($schoolid != ''){
+                paramA.schoolId = $schoolid;
+            }
+            $.ajax({
+                url:basepath + '/boss/schoolManager/modify',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(paramA)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        tip('修改完成')
+                        $amendPage.hide();
+                        $('.header').show();
+                        $('.content').show();
+                        window.setTimeout(function(){
+                            $('.btnSearch').click();
+                        },2000);
+                        console.log('修改完成');
+                        clearID()
+                    }else if(data.httpCode == '40002'){
+                        layer.closeAll();
+                        tip('参数不全，请选择完全参数');
+                    }
+                },
+                error:function(erro){
+                    console.log(erro);
+                }
+            });
+        });
+
+        function clearID(){
+            $selcity.children('option:not(:first)').remove();
+            $selCounty.children('option:not(:first)').remove();
+            $selschool.children('option:not(:first)').remove();
+            $('#selCity2 option:first').text('市');
+            $('#selCounty2 option:first').text('区/县');
+            $('#selSchool2 option:first').text('选择学校');
+            $("#selProvice2 option:first").prop("selected","selected")
+        }
+
+        //获取schollid 三级联动
+        var paramSchoolid= {
+            areaId :0
+        };
+        getarea(paramSchoolid,$selprovince,url);
+        $selprovince.on("click",function(){
+            $('#selProvice2 option:first').text('省/市');
+        });
+        $selprovince.change(function(){
+            $selcity.children('option:not(:first)').remove();
+            $selCounty.children('option:not(:first)').remove();
+            $selschool.children('option:not(:first)').remove();
+            $('#selCounty2 option:first').text('区/县');
+            $('#selCity2').removeAttr("disabled");
+            $('#selCity2 option:first').text('市');
+            $('#selSchool2 option:first').text('选择学校');
+            if(this.value == "省/市"){
+                return
+            }
+            paramSchoolid.areaId = this.value;
+            $schoolid = '';
+            getarea(paramSchoolid,$selcity,url);
+        });
+        $selcity.change(function(){
+            $selCounty.children('option:not(:first)').remove();
+            $selschool.children('option:not(:first)').remove();
+            $('#selCounty2 option:first').text('区/县');
+            $('#selCounty2').removeAttr("disabled");
+            $('#selSchool2 option:first').text('选择学校');
+            if(this.value == "市"){
+                return
+            }
+            paramSchoolid.areaId = this.value;
+            $schoolid = '';
+            getarea(paramSchoolid,$selCounty,url)
+        });
+        $selCounty.change(function(){
+            $selschool.children('option:not(:first)').remove();
+            $('#selSchool2 option:first').text('选择学校');
+            $('#selSchool2').removeAttr("disabled");
+            if(this.value == "区/县"){
+                return
+            }
+            paramSchoolid.areaId = this.value;
+            $schoolid = '';
+            var url2 = '/boss/common/get_school';
+            getarea(paramSchoolid,$selschool,url2);
+        });
+        $selschool.change(function(){
+            if(this.value == "选择学校"){
+                return
+            }
+            $schoolid = this.value;
+            console.log($schoolid);
+        });
+
+        function getarea(a,b,url){
+            $.ajax({
+                url:basepath + url,
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(a)},
+                success:function(data){
+                    $.each(data.result,function(index,item){
+                        if(item.schoolName){
+                            var options = '<option value="' + item.schoolId + '">' + item.schoolName + '</option>;';
+                            b.append(options);
+                            return
+                        }
+                        var options = '<option value="' + item.areaId + '">' + item.areaName + '</option>;';
+                        b.append(options);
+                    })
+                }
+            });
+        };
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="css/usermanage.css">
+    <link rel="stylesheet" href="css/teacherbooklist.css">
+    <link rel="stylesheet" href="../../css/kkpager_blue.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/base.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="headerleft pull-left">
+        <div class="headerText pull-left"><span>搜索方式：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="headerLeftSEL">
+                <option value="1">手机号码</option>
+                <option value="2">姓名</option>
+                <option value="3">用户id</option>
+            </select>
+        </div>
+        <div class="headerinput input-group pull-left">
+            <!--<span class="input-group-addon" id="sizing-addon1">@</span>-->
+            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+        </div>
+    </div>
+    <!--三级联动-->
+    <div class="headerright pull-right">
+        <div class="headerText pull-left"><span>选择学校：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="selProvice">
+                <option value="省/市">省/市</option>
+                <!-- <option> 北京</option>
+                 <option>河北</option>-->
+            </select>
+        </div>
+        <div class="formstyle pull-left" >
+            <select class="form-control pull-left" id="selCity">
+                <option value="市">市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left" >
+            <select class="form-control pull-left" id="selCounty">
+                <option value="区/县">区/县</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selSchool">
+                <option value="选择学校">选择学校</option>
+            </select>
+        </div>
+    </div>
+    <!--查询重置按钮-->
+    <div class="btns">
+        <button  type="button" class="btn btn-info btnSearch">查询</button>
+        <button  type="button" class="btn btn-info btnReset">重置</button>
+    </div>
+</div>
+<div class="content">
+    <div class="contenttable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>学校</th>
+                <th>使用书籍</th>
+                <th>认证状态</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+<!--教师书籍列表-->
+<div class="contentDown">
+    <div class="bookListtable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>书籍code</th>
+                <th>书籍名称</th>
+                <th>班级</th>
+                <th>学科</th>
+                <th>详情</th>
+            </tr>
+        </table>
+        <button class="backBtn btn-info btn">返回</button>
+    </div>
+</div>
+<div id="bookListDown">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>班级名称</th>
+            <th>班级id</th>
+            <th>学科</th>
+            <th>学生数量</th>
+        </tr>
+    </table>
+    <button class="bookListBtn btn-info btn">关闭</button>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../scripts/kkpager.js"></script>
+<script type="text/javascript" src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/teacher.js"></script>
+<!--单击获取教师书籍-->
+<script type="text/javascript">
+$(function(){
+    var $contentTable = $(".contenttable table");
+    var $booklistTable = $('.bookListtable table');
+    var $downTable = $('#bookListDown table');
+    var $btnClose = $('.bookListBtn');
+    var booksobj = { //储存教师书籍详细信息
+
+    }
+    $contentTable.delegate('a','click',function(){
+        console.log($(this).attr('userid'));
+        var params = {
+            "access_token": '',
+            "teacherId": ''
+        };
+        params.access_token = window.sessionStorage.getItem("access_token");
+        params.teacherId = $(this).parent().parent().attr('userid');
+        $('.header').hide();
+        $('.content').hide();
+        $('.bookListtable').show();
+        $('.bookListDown').show();
+        $('.contentDown').show();
+        $.ajax({
+            url:basepath + '/boss/teacher/bookList',
+            type : 'POST',
+            dataType:"json",
+            data :{params :JSON.stringify(params)},
+            success:function(data){
+                if(data.httpCode == '200'){
+                    $.each(data.result,function(index,item){
+                        var trs = '';
+                        var  groupName = '';
+                        var classNum  = '';
+                        if(item.groupList){
+                            classNum = item.groupList.length;
+                            $.each(item.groupList,function(index,item){
+                                groupName += item.groupName +' ';
+                            });
+                        }
+                        trs += '<tr> <td>'+ (index + 1) + '</td><td>'+ item.bookId + '</td> <td>' + item.bookName + '</td> <td>' + classNum + '</td> <td>' + item.subject + '</td> <td><button class="detailsBtn" id="' + item.bookId +'">详情</button></td> </tr>'
+
+                        $booklistTable.append(trs);
+                        //存储书籍详细信息
+                        var id = item.bookId;
+                        booksobj[id]= item.groupList;
+                    });
+                    $('.detailsBtn').on('click',function(){
+                        var bookid =$(this).attr('id');
+                        /*console.log(bookid);
+                        console.log(booksobj[bookid]);*/
+                        var trd = '';
+                        $.each(booksobj[bookid],function(index,cont){
+                            trd +=  '<tr> <td>' + cont.groupName + '</td> <td>'+ cont.classId + '</td> <td>' + cont.subjectName + '</td> <td>' + cont.studentNum + '</td></tr>;'
+                        });
+                        $('.backBtn').css('background','pink');
+                        $('.backBtn').attr('disabled','true');
+                        $('#bookListDown tr:not(:first)').remove();
+                        $downTable.append(trd);
+                       /* $('#bookListDown').show();*/
+                        $('#bookListDown').fadeIn(200);
+                    });
+                }
+            },
+            error:function(error){
+                console.log(error);
+            }
+            
+        });
+    });
+    $btnClose.on('click',function(){
+      /*  $('#bookListDown').hide();*/
+        $('#bookListDown').fadeOut(200,function(){
+            $('.backBtn').css('background','#5bc0de');
+            $('.backBtn').removeAttr("disabled");
+        });
+    });
+    $('.backBtn').on('click',function(){
+        $('.bookListtable tr:not(:first)').remove();
+        $('.bookListtable').hide();
+        $('.content').show();
+        $('.header').show();
+
+    });
+});
+</script>
+</body>
+</html>

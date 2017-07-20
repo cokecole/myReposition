@@ -1,0 +1,65 @@
+.formtable{
+    position: absolute;
+    top:50px;
+}
+.form-inline > div{
+    padding: 10px 0 10px 0;
+}
+.formstyle{
+    padding-left: 10px;
+}
+button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    margin: 0 20px 0 20px;
+    margin-top: 50px;
+}
+.reserchName{
+    margin-left: 35px;
+}
+.reserchNum{
+    margin-left: 22px;
+}
+.reserchSubject,.reserchSectiom{
+    margin-left: 38px;
+}
+.schoolUsername{
+    margin-left: 32px;
+}
+.schoolNum{
+    margin-left: 19px;
+}
+.schoolCode{
+    margin-left: 5px;
+}
+.addManager{
+    overflow: hidden;
+    display: none;
+}
+.managerDetil{
+    display: none;
+}
+.addManager select{
+    margin-right: 10px;
+}
+.dir_DetilAmend{
+    display: none;
+}
+.managerDetil{
+    width: 80%;
+    margin:0 auto;
+}
+#selProvice1,#selCity1,#selCounty1,#selSchool1,#selProvice2,#selCity2,#selCounty2,#selSchool2{
+    width: 128px;
+}
+/*
+.contenttable table button{
+    width: 20px;
+    height: 20px;
+   border: none;
+    color: #1d90e6;
+    font-size: 12px;
+    background: none;
+}*/

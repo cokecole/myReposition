@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="css/usermanage.css">
+    <link rel="stylesheet" href="css/publisherAdd.css">
+    <link rel="stylesheet" href="../../css/kkpager_blue.css">
+    <style type="text/css">
+        .pop{
+            width: 650px;
+            max-height: 700px;
+            overflow: auto;
+           /* position: absolute;*/
+            position: fixed;
+            left: 20%;
+            padding: 10px;
+            border: 1px solid gray;
+            text-align: center;
+            display: none;
+            z-index: 999;
+            position: fixed;
+            top: 200px;
+            left: 200px;
+            background-color: lemonchiffon;
+        }
+        .contentbtn{
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <div class="headerleft pull-left ">
+        <div class="headerText pull-left"><span>搜索类型：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="headerLeftSEL">
+                <option value="1">手机号码</option>
+                <option value="2">出版社名称</option>
+                <option value="3">用户id</option>
+                <option value="4">联系人</option>
+            </select>
+        </div>
+        <div class="headerinput input-group pull-left">
+            <!--<span class="input-group-addon" id="sizing-addon1">@</span>-->
+            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+        </div>
+    </div>
+    <!--三级联动-->
+    <div class="headerright pull-right">
+        <div class="headerText pull-left"><span>选择学校：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="selProvice">
+                <option value="省/市">省/市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selCity">
+                <option value="市">市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selCounty">
+                <option value="区/县">区/县</option>
+            </select>
+        </div>
+    </div>
+    <!--查询重置按钮-->
+    <div class="btns">
+        <button  type="button" class="btn btn-info btnSearch">查询</button>
+        <button  type="button" class="btn btn-info btnReset">重置</button>
+        <button  type="button" class="btn btn-info newButton">新增</button>
+    </div>
+</div>
+<div class="content">
+    <div class="contenttable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>出版社名称</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>区域</th>
+                <th>书籍</th>
+                <th>层级权限</th>
+                <th>一级代理</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>321321</td>
+                <td></td>
+                <td>单小楠</td>
+                <td>15632323232</td>
+                <td>北京市朝阳区</td>
+                <td>4</td>
+                <td>5</td>
+                <td><a href="#">查看</a></td>
+                <td><a href="#">编辑重置密码</a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="kkpager"></div>
+    <div class="pop">
+        <div class="popbox ">
+            <ul class="clearfix popul">
+            </ul>
+        </div>
+            <button class="contentbtn btn-info btn popBtn">关闭</button>
+    </div>
+</div>
+<!--新增-->
+<div class="newAddPub">
+    <form action="" class="form-inline">
+        <!--出版社信息-->
+        <div class="publishermes">
+            <h3>出版社信息</h3>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="publishermesname">出版社信息:</label>
+                    <input type="text" class="form-control" id="publishermesname" placeholder="请输入出版社信息">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="publishermesperson">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联&nbsp;系&nbsp;人:</label>
+                    <input type="email" class="form-control" id="publishermesperson" placeholder="请输入联系人">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="publishermesphone">&nbsp;&nbsp;&nbsp;&nbsp;联系电话: </label>
+                    <input type="text" class="form-control" id="publishermesphone" placeholder="联系电话">
+                </div>
+            </form>
+        </div>
+        <!--分成比例-->
+        <div class="proportion">
+            <h3>分成比例</h3>
+            <div>
+                <input type="text" id="divisionProportion">&nbsp;<span>%</span>
+            </div>
+        </div>
+        <!--代理信息-->
+        <div class="agencymes">
+            <h3>代理信息</h3>
+            <div class="agencyme">
+
+                    <div class="agencymeBox">
+                        <div class="agencymeSpan pull-left"><span >代理地区1：</span></div>
+                        <select class="form-control pull-left"  id="selProvice1">
+                            <option value="">省/市</option>
+                        </select>
+                        <select class="form-control pull-left" id="selCity1">
+                            <option value="">市</option>
+                        </select>
+                        <select class="form-control pull-left" id="selCounty1">
+                            <option value="">区/县</option>
+                        </select>
+                    </div>
+
+                <button class="addtyle">添加</button>
+                <button class="deleteyle deleteStatus">删除</button>
+            </div>
+            <!--<button class="addtyle">添加</button>-->
+        </div>
+        <!--权限管理-->
+        <div class="authority">
+            <h3>权限管理</h3>
+            <form id="form1">
+                <span class="indent">订单数量统计</span>
+                <input type="radio" name="items" value="可查">可查
+                <input type="radio" name="items" value="不可查">不可查
+                <br>
+                <br>
+                <sapn class="hierarchy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层级代理</sapn>
+                <input type="radio" name="hierarchy" value="四级" />四级
+                <input type="radio" name="hierarchy" value="三级" />三级
+                <input type="radio" name="hierarchy" value="二级" />二级
+               <!-- <button type="button" class="btn btn-info newAddbtn"  >创建</button>-->
+                <!--<input type="submit" value="submit"  id="btnSubmit" />-->
+            </form>
+        </div>
+        <!--按钮-->
+        <!--<div class="btns">
+            <div>
+                <button type="button" class="btn btn-info">取消</button>
+                <button type="button" class="btn btn-info">创建</button>
+            </div>
+        </div>-->
+    </form>
+    <div class="files">
+        <div><span>二维码：</span><button id="uploadingBtn">上传</button></div>
+        <div class="file">
+            <img src="../../images/file.png" alt="" id="headerimg"/>
+            <form class="hide" id="headerForm">
+                <input id='uploadingCon' name='file' type='file' accept="image/image/jpg,image/jpeg,image/png" capture="camera"/>
+            </form>
+        </div>
+    </div>
+    <div class="btns">
+        <div>
+            <button type="button" class="btn btn-info newAddre_cancel">取消</button>
+            <button type="button" class="btn btn-info newAddbtn"  >创建</button>
+        </div>
+    </div>
+</div>
+<!--代理商查看-->
+<div class="agentCheck">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>序号</th>
+            <th>代理商id</th>
+            <th>代理商名称</th>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>区域</th>
+            <th>书籍</th>
+            <th><span class="agentRank">二</span>级代理商</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1123</td>
+            <td>XXX</td>
+            <td>单男</td>
+            <td>123123132</td>
+            <td>朝阳区</td>
+            <td>4</td>
+            <td><a href="#">查看</a></td>
+        </tr>
+    </table>
+    <button id="agentBackBtn">返回</button>
+</div>
+<!--代理商修改 删除-->
+<div class="publisherAmend">
+    <form action="" class="form-inline">
+        <!--出版社信息-->
+        <div class="publishermes">
+            <h3>出版社信息</h3>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="pubaddpubname">出版社信息:</label>
+                    <input type="text" class="form-control" id="pubaddpubname" placeholder="请输入出版社信息">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="pubAmendpubperson">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联&nbsp;系&nbsp;人:</label>
+                    <input type="email" class="form-control" id="pubAmendpubperson" placeholder="请输入联系人">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="pubAmendpubphone">&nbsp;&nbsp;&nbsp;&nbsp;联系电话: </label>
+                    <input type="text" class="form-control" id="pubAmendpubphone" placeholder="联系电话"  disabled="true">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="pubAmendpubpassword">&nbsp;&nbsp;&nbsp;&nbsp;修改密码: </label>
+                    <input type="password" class="form-control" id="pubAmendpubpassword" placeholder="请输入密码">
+                </div>
+            </form>
+        </div>
+        <!--分成比例-->
+        <div class="proportion">
+            <h3>分成比例</h3>
+            <div>
+                <input type="text" id="divAmendProportion"><span>%</span>
+            </div>
+        </div>
+        <!--代理信息-->
+        <div class="agencymes">
+            <h3>代理信息</h3>
+            <div class="agencyme">
+                <div class="agencymeBox1">
+                    <div class="agencymeSpan pull-left"><span >代理地区1：</span></div>
+                    <select class="form-control pull-left"  id="amendProvice1">
+                        <option value="">省/市</option>
+                    </select>
+                    <select class="form-control pull-left" id="amendCity1">
+                        <option value="">市</option>
+                    </select>
+                    <select class="form-control pull-left" id="amendCountry1">
+                        <option value="">区/县</option>
+                    </select>
+                </div>
+
+                <button class="addtyle2">添加</button>
+                <button class="deleteyle2 deleteStatus2">删除</button>
+            </div>
+        </div>
+        <!--权限管理-->
+        <div class="authority">
+            <h3>权限管理</h3>
+            <form id="form2">
+                <span class="indent">订单数量统计</span>
+                <input type="radio" name="items1" value="可查" class="indent-1" />可查
+                <input type="radio" name="items1" value="不可查" class="indent-2" />不可查
+                <br>
+                <br>
+                <sapn class="hierarchy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层级代理</sapn>
+                <input type="radio" name="hierarchy1" value="四级"  class="hierarchy-4"/>四级
+                <input type="radio" name="hierarchy1" value="三级" class="hierarchy-3"/>三级
+                <input type="radio" name="hierarchy1" value="二级" class="hierarchy-2"/>二级
+            </form>
+        </div>
+        <!--按钮-->
+        <!--<div class="btns">
+            <div>
+                <button type="button" class="btn btn-info">取消</button>
+                <button type="button" class="btn btn-info">创建</button>
+            </div>
+        </div>-->
+    </form>
+
+    <div class="files">
+        <div><span>二维码：</span><button id="uploadingAmend">上传</button></div>
+        <div class="file">
+            <img src="../../images/file.png" alt="" id="headerimgAmend"/>
+            <form class="hide" id="headerFormAmend">
+                <input id='uploadingConAmend' name='file' type='file' accept="image/jpg,image/jpeg,image/png" capture="camera"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="btns">
+        <div>
+            <button type="button" class="btn btn-info amendCancel">取消</button>
+            <button type="button" class="btn btn-info newAmendbtn"  >修改</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../../login/js/md5.js"></script>
+<script src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="../../scripts/kkpager.js"></script>
+<script type="text/javascript" src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/publisher.js"></script>
+<script type="text/javascript" src="js/publisherAdd.js"></script>
+<script type="text/javascript" src="js/publisherAmend.js"></script>
+</body>
+</html>

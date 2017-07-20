@@ -1,0 +1,41 @@
+.content{
+    width: 100%;
+    padding-top: 10px;
+    border: 1px solid #F1F2F7;
+}
+.contenttable{
+    display: none;
+    /*display: block;*/
+}
+.bookList{
+    display: none;
+    text-align: center;
+}
+.bookList_callback{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    margin: 0 20px 0 20px;
+}
+#backBtn{
+    margin-left: 50%;
+}
+.directorgeneralDetil{
+    display: none;
+}
+/*学校管理员修改*/
+.schoolmanageAmend{
+    display: none;
+}
+.contenttable td{
+    text-align: left;
+}
+tr,td,th{
+    text-align: center !important;////
+}
+.content,.bookList{
+    width: 80%;
+    margin: 0 auto;
+}
+

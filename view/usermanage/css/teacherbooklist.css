@@ -1,0 +1,27 @@
+.bookListtable {
+    width: 50%;
+    display: none;
+}
+#bookListDown{
+    display: none;
+    width: 35%;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #D0D0D0;
+    padding: 8px;
+}
+.backBtn{
+    margin-left: 400px;
+    width: 100px;
+    height: 40px;
+}
+.bookListBtn{
+    width: 100px;
+    height: 40px;
+}
+.bookListtable table button{
+    border: none;
+    color: #1d90e6;
+    font-size: 15px;
+    background: none;
+}

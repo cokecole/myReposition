@@ -1,0 +1,142 @@
+html { overflow-y: hidden; }
+.wrap-out{
+    width:100%;
+    min-width: 1600px;
+    overflow:hidden;
+    background:#f5f5f5;
+}
+#title{
+    width:100%;
+    height:80px;
+    background:#337ab7;
+    margin-bottom: 0px;
+}
+#title .logo{
+    display: inline-block;
+    margin-left: 50px;
+    line-height: 80px;
+    font-size: 25px;
+    color: #fff;
+}
+.titlewrap{
+    min-width: 700px;
+}
+#title h1{
+    display: inline-block;
+    line-height: 80px;
+    font-size: 25px;
+    color:#fff;
+    padding:0px 5px;
+    text-shadow:
+    0px 0px 0 #DCDCDC ,
+    1px -1px 0 #D3D3D3 ,
+    2px -2px 0 #C0C0C0 ,
+    3px -3px 0 #A9A9A9 ,
+    3px -3px 2px rgba(0, 0, 0, 0.55),
+    3px -3px 1px rgba(0, 0, 0, 0.5);
+}
+.sidebar{
+    height:964px;
+    width:13%;
+    min-width: 175px;
+    /*border:1px solid #cccccc;*/
+    float:left;
+    padding:20px 0px 20px 0px;
+    background: gainsboro;
+}
+.sidebar .nav a{
+    text-decoration:none;
+}
+#menu{
+    padding-left: 10px;
+}
+.submenu>li:hover{
+    background: #eee;
+}
+.main-content{
+    height:944px;
+    width:85.5%;
+    float:left;
+    margin-top: 20px;
+    margin-left: 20px;
+    background:#fff;
+    /*border-top:1px solid #D0D0D0;*/
+    /*border-left:1px solid #D0D0D0;*/
+}
+.main-content .page-content .row{
+    margin-left: 0px;
+    maigin-right:0px;
+}
+a[iden="one"]  .menu-text{
+    font-size: 18px;
+    padding-left: 6px;
+    line-height: 18px;
+}
+a[iden="one"]  i{
+    display: inline-block;
+    width:18px;
+    height:18px;
+    font-size: 18px;
+
+}
+.submenu a[iden="two"] i{
+    display: inline-block;
+    width:16px;
+    height:16px;
+    font-size: 16px;
+}
+.submenu a[iden="two"] .menu-text{
+    display: inline-block;
+    font-size: 16px;
+    padding:8px 0px 8px 6px;
+    line-height: 16px;
+
+}
+.submenu a[iden="two"]{
+    padding-left: 35px;
+}
+.submenu a[iden="three"] i{
+    display: inline-block;
+    width:16px;
+    height:16px;
+    font-size: 16px;
+}
+.submenu a[iden="three"] .menu-text{
+    font-size: 14px;
+    padding:6px 0px 6px 15px;
+    line-height: 14px;
+
+}
+.submenu a[iden="three"]{
+    padding-left: 56px;
+}
+
+#username ,#secede{
+    line-height: 80px;
+    font-size: 18px;
+    color: #fff;
+}
+#username{
+    margin-right: 60px;
+}
+#secede{
+    margin-right: 80px;
+}
+#username:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("../images/btn_bg.png") 0px -58px;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+#secede:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("../images/btn_bg.png") 0px -81px;
+    margin-right: 15px;
+    vertical-align: middle;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="css/usermanage.css">
+    <link rel="stylesheet" href="../../css/kkpager_blue.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/base.js"></script>
+</head>
+<body>
+<div class="header" >
+    <div class="headerleft pull-left">
+        <div class="headerText pull-left"><span>搜索方式：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="headerLeftSEL">
+                <option value="1">手机号码</option>
+                <option value="2">姓名</option>
+                <option value="3">用户id</option>
+            </select>
+        </div>
+        <div class="headerinput input-group pull-left">
+            <!--<span class="input-group-addon" id="sizing-addon1">@</span>-->
+            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+        </div>
+    </div>
+    <!--三级联动-->
+    <div class="headerright pull-right">
+        <div class="headerText pull-left"><span>选择学校：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="selProvice">
+                <option value="省/市">省/市</option>
+               <!-- <option> 北京</option>
+                <option>河北</option>-->
+            </select>
+        </div>
+        <div class="formstyle pull-left" >
+            <select class="form-control pull-left" id="selCity">
+                <option value="市">市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left" >
+            <select class="form-control pull-left" id="selCounty">
+                <option value="区/县">区/县</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left">
+            <select class="form-control pull-left" id="selSchool">
+                <option value="选择学校">选择学校</option>
+            </select>
+        </div>
+    </div>
+    <!--查询重置按钮-->
+    <div class="btns">
+        <button  type="button" class="btn btn-info btnSearch">查询</button>
+        <button  type="button" class="btn btn-info btnReset">重置</button>
+    </div>
+</div>
+<div class="content">
+    <div class="contenttable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>家长手机号</th>
+                <th>学校</th>
+                <th>使用书籍</th>
+                <th>付费用户</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+
+<!--学生端书籍列表-->
+<div class="bookList">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>序号</th>
+            <th>书籍code</th>
+            <th>书籍名称</th>
+            <th>班级</th>
+            <th>老师</th>
+            <th>班级群id</th>
+            <th>付费状态</th>
+        </tr>
+    </table>
+    <button type="btn" class="btn btn-info bookList_callback">返回</button>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../scripts/kkpager.js"></script>
+<script type="text/javascript" src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/usermanage.js"></script>
+<!--获取学生书籍页面-->
+<script type="text/javascript">
+    $(function(){
+        $table = $('.bookList table');
+
+        $('.contenttable table').delegate('a','click',function(){
+            /*$table.children('tr:not(:first)').remove();*/
+            $('.bookList tr:not(:first)').remove();
+            var params = {
+                "access_token": '',
+                "studentId": ''
+            };
+            params.access_token = window.sessionStorage.getItem("access_token");
+            params.studentId = $(this).parent().parent().attr('userid');
+            $('.header').hide();
+            $('.content').hide();
+            $('.bookList').show();
+            $.post({
+                url : basepath + '/boss/student/bookList',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(params)},
+                success:function(data){
+                    /*console.log(data.result);*/
+                    if(data.httpCode == '200'){
+                        $.each(data.result,function(index,item){
+                           /* var startTime = new Date(item.vipStartTime).getTime();*/
+                            var startTime = new Date().getTime();
+                            var endTime = new Date(item.vipEndTime).getTime();
+                            var typetext = '';
+                            if(item.vipGetType == 0){
+                                if(endTime - startTime> 0){
+                                    typetext = '免费期'
+                                }else if(endTime - startTime < 0){
+                                    typetext = '未付费'
+                                }
+                            }else if(item.vipGetType == 1){
+                                if(endTime - startTime > 0){
+                                    var surplusTime = (endTime - startTime)/(60*60*1000);
+                                    var surplusDays =  Math.floor(surplusTime/24);
+                                    var surplusHours = parseInt(surplusTime%24);
+                                    typetext = '剩余时间:' + surplusDays +'天'+ surplusHours +'小时'
+                                }else if(endTime - startTime < 0){
+                                    typetext = '已过期'
+                                }
+                            }
+
+
+                            var trs = '';
+                            trs += "<tr> <td>" + (index + 1) + "</td> <td>" + item.bookId + "</td> <td>" + item.bookName + "</td> <td>" + item.className + "</td> <td>" + item.teacherName + "</td> <td>" + item.groupId + "</td> <td>" + typetext +"</td> </tr>"
+                            $table.append(trs)
+                        })
+                    }
+                }
+            });
+        });
+        /*返回按钮*/
+        $('.bookList_callback').on('click',function(){
+            $('.header').show();
+            $('.content').show();
+            $('.bookList').hide();
+        });
+    });
+</script>
+</body>
+</html>

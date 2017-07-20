@@ -1,0 +1,164 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+.content{
+    width:100%;
+    height:100%;
+}
+.content1{
+    width:100%;
+    height:100%;
+    padding: 30px;
+    overflow: hidden;
+    /*display: none;*/
+}
+.inquire{
+    width:100%;
+    height:50px;
+    display: flex;
+    align-items: center;
+}
+.inquire div:first-child{
+    position: relative;
+    margin-left:5px;
+}
+.inquire input{
+    border: 1px solid #cccccc;
+    outline: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 50px;
+    font-weight: normal;
+}
+.inquire div:first-child .change{
+    display: inline-block;
+    width:54px;
+    border-bottom: 1px solid #000000;
+    position: absolute;
+    left:143px;
+    top:15px;
+}
+.content1 .formstyle{
+    width: 120px;
+
+}
+.content1 .formstyle ::before{
+    content:'';
+}
+
+.content1 .headerinput{
+    width: 300px;
+}
+.content1 .headerText{
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    padding-right: 0;
+}
+.content1 .headerText > span {
+    font-size: 16px;
+    line-height: 35px;
+    margin-left:15px;
+}
+.content1 .btns>button{
+    width:100px;
+    height:40px;
+    font-size: 18px;
+    line-height: 25px;
+    margin-top: 20px;
+    margin-left: 7px;
+}
+.content1 .btns button:last-child{
+    margin-left: 50px;
+}
+.content1 .echo{
+
+    width:100%;
+    padding:50px 0px 30px;
+
+}
+.content1 .tab{
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+}
+.content1 .tab th{
+    text-align: center;
+}
+.echo .tab td{
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.content2{
+    width:100%;
+    height:100%;
+    padding: 30px;
+    overflow: hidden;
+    display: none;
+}
+.content2 .keyvalue{
+    font-size: 16px;
+}
+.info{
+    margin-top:10px;
+}
+.infolist li{
+    height:38px;
+    line-height: 38px;
+    padding: 4px;
+}
+.infolist li span{
+    line-height: 18px;
+    height: 18px;
+    display: inline-block;
+    font-size: 18px;
+}
+.feedback{
+    padding: 4px;
+}
+.content2 .feedback h4{
+    margin-top: 0;
+}
+.feedback .text{
+    padding-right: 800px;
+    text-indent:2em
+}
+.addinfo{
+    margin-top: 10px;
+    padding: 4px;
+}
+.addinfo div{
+    padding: 6px 0px ;
+}
+.addinfo span{
+    /*display: inline-block;*/
+    font-size: 18px;
+
+}
+.reacher{
+    cursor:pointer;
+}
+.content2 .closed{
+    width: 100%;
+    text-align: center;
+    margin-top: 300px;
+
+}
+.content2 .closed span{
+    display: block;
+    width:100px;
+    height:40px;
+    font-size: 18px;
+    margin-left: 200px;
+
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    pointer-events: none;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
+}

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="../../css/common.css">-->
+    <link rel="stylesheet" href="css/usermanage.css">
+    <link rel="stylesheet" href="css/schoolmanagerAdd.css">
+    <link rel="stylesheet" href="css/researcher.css">
+    <link rel="stylesheet" href="../../css/kkpager_blue.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <div class="headerleft pull-left ">
+        <div class="headerText pull-left "><span>搜索类型：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control" id="headerLeftSEL">
+                <option value="1">手机号码</option>
+                <option value="2">姓名</option>
+                <option value="3">用户id</option>
+            </select>
+        </div>
+        <div class="headerinput input-group pull-left">
+            <input type="text" class="form-control" placeholder="">
+        </div>
+    </div>
+    <!--三级联动-->
+    <div class="headerright pull-right">
+        <div class="headerText pull-left  searchText"><span>选择学校：</span></div>
+        <div class="formstyle pull-left proviceSelect">
+            <select class="form-control" id="selProvice">
+                <option value="省/市">省/市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left citySelect">
+            <select class="form-control pull-left" id="selCity">
+                <option value="市">市</option>
+            </select>
+        </div>
+        <div class="formstyle pull-left countrySelect">
+            <select class="form-control pull-left" id="selCounty">
+                <option value="区/县">区/县</option>
+            </select>
+        </div>
+        <!--<div class="formstyle pull-left scoolSelect">
+            <select class="form-control pull-left" id="selSchool">
+                <option>选择学校</option>
+            </select>
+        </div>-->
+            <!--<div class="headerText pull-left"><span>选择学科：</span></div>
+            <div class="formstyle pull-left">
+                <select class="form-control subjectSelect">
+                    <option>全部</option>
+                    <option value="1">语文</option>
+                </select>
+            </div>
+            <div class="headerText pull-left"><span>选择学段：</span></div>
+            <div class="formstyle pull-left">
+                <select class="form-control subjectSelect">
+                    <option>全部</option>
+                    <option value="1">语文</option>
+                </select>
+            </div>-->
+    </div>
+    <div class="subjectBox pull-right">
+        <div class="headerText pull-left"><span>选择学段：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control subjectSelect" id="stageSel">
+                <option value="全部">全部</option>
+                <option value="1">小学</option>
+                <option value="2">初中</option>
+                <option value="3">高中</option>
+            </select>
+        </div>
+        <div class="headerText pull-left"><span>选择学科：</span></div>
+        <div class="formstyle pull-left">
+            <select class="form-control subjectSelect" id="subjectSel">
+                <option value="全部">全部</option>
+            </select>
+        </div>
+    </div>
+    <!--查询重置按钮-->
+    <div class="btns">
+        <button  type="button" class="btn btn-info btnSearch">查询</button>
+        <button  type="button" class="btn btn-info btnReset">重置</button>
+        <button  type="button" class="btn btn-info newButton">新增</button>
+    </div>
+</div>
+<div class="content">
+    <div class="contenttable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>学段</th>
+                <th>学科</th>
+                <th>区域</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>321321</td>
+                <td>单小楠</td>
+                <td>15632323232</td>
+                <td>北京四中</td>
+                <td>北京市朝阳区</td>
+                <td><a href="javascript:;">编辑重置密码</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>321321</td>
+                <td>单小楠</td>
+                <td>15632323232</td>
+                <td>北京四中</td>
+                <td>北京市朝阳区</td>
+                <td><a href="javascript:;">编辑重置密码</a></td>
+            </tr>
+        </table>
+        <div id="kkpager"></div>
+    </div>
+</div>
+<!--//新增页面-->
+<div class='newAdd'>
+    <div class="formtable">
+        <form action="" class="form-inline">
+            <div class="form-group reserchName">
+                <label for="username">&nbsp;&nbsp;姓 名：</label>
+                <input type="username" class="form-control" id="username" placeholder="请输入姓名">
+            </div>
+            <br>
+            <div class="form-group reserchNum">
+                <label for="phone">&nbsp;&nbsp;手机号：</label>
+                <input type="text" class="form-control" id="phone" placeholder="请输入手机号码">
+            </div>
+            <br>
+            <div class="form-group reserchSchool">
+                <span style="font-weight: 700;">&nbsp;&nbsp;&nbsp;选择学校：&nbsp</span>
+                <select class="form-control" id="selProvice1">
+                <option value="省/市">省/市</option>
+                </select>
+                <select class="form-control" id="selCity1">
+                <option value="市">市</option>
+                </select>
+                <select class="form-control" id="selCounty1">
+                <option value="区/县">区/县</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group reserchSubject">
+                <!--<label class="pull-left" >学科:</label>-->
+                <span style="font-weight: 700;">学段：&nbsp</span>
+                    <select class="form-control" id="addstageCode">
+                        <option value="全部">请选择</option>
+                        <option value="1">小学</option>
+                        <option value="2">初中</option>
+                        <option value="3">高中</option>
+                    </select>
+            </div>
+            <br>
+            <div class=" reserchSectiom">
+               <!-- <label class="pull-left">学段:</label>-->
+                <span style="font-weight: 700;">学科：&nbsp</span>
+                    <select class="form-control" id="addsubjectCode">
+                        <option value="全部">请选择</option>
+                        <option value="1">语文</option>
+                        <option value="2">数学</option>
+                        <option value="3">英语</option>
+                    </select>
+            </div>
+            <br>
+            <button type="button" class="btn btn-info cancelBtn">取消</button>
+            <button type="submit" class="btn btn-info addBtn">创建</button>
+        </form>
+    </div>
+</div>
+
+<!--教研员详情-->
+<div class="researcherDetil">
+    <div class="researcherDetilTable">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>序号</th>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>城市</th>
+                <th>区域id</th>
+                <th>学校区域</th>
+                <th>学段</th>
+                <th>学科</th>
+            </tr>
+        </table>
+    </div>
+    <!--<button class="btn btn-info researcherAmend">修改</button>
+    <button class="btn btn-info researcherDelete">删除</button>-->
+    <button class="btn btn-info researcherBack">返回</button>
+</div>
+<!--教研员修改-->
+<div class="researchermanageAmend">
+    <div class="formtable">
+        <form action="" class="form-inline">
+            <div class="form-group schoolUsername">
+                <label for="researcherUsernameAmend">&nbsp;&nbsp;&nbsp;姓名：</label>
+                <input type="username" class="form-control" id="researcherUsernameAmend" placeholder="请输入姓名">
+            </div>
+            <br>
+            <div class="form-group schoolNum">
+                <label for="researcherMobileAmend">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机：</label>
+                <input type="text" class="form-control" id="researcherMobileAmend" placeholder="请输入手机">
+            </div>
+            <br>
+            <div class="form-group schoolUsername">
+                <label for="researcherPasswordAmend">&nbsp;&nbsp;&nbsp;密码：</label>
+                <input type="password" class="form-control" id="researcherPasswordAmend" placeholder="请输入密码">
+            </div>
+            <br>
+            <div class="form-group schoolSelect">
+                <span style="font-weight: 700;">&nbsp;&nbsp;&nbsp;&nbsp;选择学校:&nbsp;&nbsp;</span>
+                <select class="form-control" id="selProvice2">
+                    <option value="省/市">省/市</option>
+                </select>
+                <select class="form-control" id="selCity2">
+                    <option value="市">市</option>
+                </select>
+                <select class="form-control" id="selCounty2">
+                    <option value="区/县">区/县</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group reserchSubject">
+                <!--<label class="pull-left" >学科:</label>-->
+                <span style="font-weight: 700;">学段：&nbsp</span>
+                <select class="form-control" id="addsubjectCodeAmend">
+                    <option value="1">小学</option>
+                    <option value="2"> 初中</option>
+                    <option value="3">高中</option>
+                </select>
+            </div>
+            <br>
+            <div class=" reserchSectiom">
+                <!-- <label class="pull-left">学段:</label>-->
+                <span style="font-weight: 700;">学科：&nbsp</span>
+                <select class="form-control" id="stageCodeAmend">
+                    <!--<option value="1">初中</option>
+                    <option value="2">高中</option>
+                    <option value="3">小学</option>-->
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-info cancelBtnAmend">取消</button>
+            <button type="submit" class="btn btn-info addBtnAmend">修改</button>
+        </form>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js/base.js"></script>
+<script src="../../scripts/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../login/js/md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="../../scripts/kkpager.js"></script>
+<script type="text/javascript" src="../../scripts/layer.js"></script>
+<script type="text/javascript" src="js/researcher.js"></script>
+<script type="text/javascript" src="js/researcherAdd.js"></script>
+<script type="text/javascript">
+    /*教研员详情 修改 删除*/
+    $(function(){
+        var $table = $('.contenttable table');
+        var $amend = $('.researcherAmend');
+        var $delete = $('.researcherDelete');
+        var $back = $('.researcherBack');
+        var $detiltable = $('.researcherDetilTable table');
+
+        var $amendPage = $('.researchermanageAmend');//修改页
+        var $detil  = $('.researcherDetil');
+        var $btnAmend = $('.addBtnAmend');
+        var $schoolid = '';
+        var $selprovince = $('#selProvice2');
+        var $selcity = $('#selCity2');
+        var $selCounty = $('#selCounty2');
+        var url = '/boss/common/get_area';
+        var params = {//获取详情参数
+            "access_token": '',
+            "mobile": "",
+            "password": ""
+        };
+        var paramD = { // 删除参数
+            "access_token": "",
+            "id": ""
+        };
+        var paramA = { // 修改参数
+            "access_token": "",
+            "id": '',
+            /*"password": " ",	//可选（md5加密）
+            "fullName": "",			//可选
+            "mobile": "",			//可选
+            "subjectCode ": '', 			//可选
+            "stageCode": ""
+            "areaId: ""//可选*/
+        };
+        var rearcherObj = {
+
+        };
+        params.access_token = window.sessionStorage.getItem("access_token");
+        paramD.access_token = window.sessionStorage.getItem("access_token");
+        paramA.access_token = window.sessionStorage.getItem("access_token");
+        $table.delegate('.check','click',function(){
+            $('.header').hide();
+            $('.content').hide();
+            $('.researcherDetil').show();
+            $('.researcherDetilTable tr:not(:first)').remove();
+            params.mobile = $(this).parent().parent().attr('mobile');
+            params.password = $(this).parent().parent().attr('password');
+            $.ajax({
+                url:basepath + '/boss/reseacher/detail',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(params)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        var item = data.result;
+                        /*getReserchmsg(paramA,item)*/;//获取数据 用于渲染修改页
+                        paramD.id = item.id;
+                        var trs = '';
+                        trs += '<tr> <td>'+ 1 + '</td><td>'+ item.id + '</td> <td>' + item.fullName + '</td> <td>' + item.mobile + '</td> <td cityid="'+ item.cityName  +'">' + item.cityName + '</td> <td>' + item.areaId + '</td> <td>' + item.areaName + '</td><td>' + item.stageName + '</td><td>' + item.subjectName + '</td></tr>'
+                        $detiltable.append(trs);
+
+                    }
+                }
+            });
+
+        });
+        //删除
+        $table.delegate('.delete','click',function(){
+            paramD.id = $(this).parent().parent().attr('id');
+            var delorrenew = ''
+            if ($(this).parent().parent().attr('status') == 0){
+                paramD.status = 1;
+                delorrenew = "恢复";
+            }else {
+                paramD.status = 0;
+                delorrenew = "删除";
+            }
+
+            layer.open({
+                content: '您确定要'+ delorrenew +'吗？'
+                ,btn: ['确定', '取消']
+                , style: 'width:200px;height:90px'
+                ,yes: function(){
+                    deleteSchool(paramD);
+                }
+            });
+
+
+        });
+        function deleteSchool(paramD){
+            $.ajax({
+                url:basepath + '/boss/reseacher/delete',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(paramD)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        if(paramD.status == 1){
+                            tip('恢复成功');
+                        }else {
+                            tip('删除成功');
+                        }
+                        delete paramD.status;
+                        delete paramD.id;
+                        window.setTimeout(function(){
+                            $('.btnSearch').click();
+                        },2000)
+
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        }
+
+        //返回
+        $back.on('click',function(){
+            $('.header').show();
+            $('.content').show();
+            $('.researcherDetil').hide();
+        });
+
+
+        //修改￥￥￥￥￥￥￥￥￥￥￥￥￥￥modify
+        $table.delegate('.modify','click',function(){
+            var item = {};
+            item.fullName = $(this).parent().parent().attr('fullName');
+            item.id = $(this).parent().parent().attr('id');
+            item.password = $(this).parent().parent().attr('password');
+            item.mobile = $(this).parent().parent().attr('mobile');
+            item.areaId = $(this).parent().parent().attr('areaId');
+            item.subjectCode  = $(this).parent().parent().attr('subjectCode ');
+            item.stageCode = $(this).parent().parent().attr('stageCode');
+            var proName = $(this).attr('provinceName');//回显省市县
+            var citName = $(this).attr('cityName');
+            var counName = $(this).attr('areaName');
+            $('#selProvice2 option:first').text(proName);
+            $('#selCity2 option:first').text(citName);
+            $('#selCity2').attr('disabled','true');
+            $('#selCounty2 option:first').text(counName);
+            $('#selCounty2').attr('disabled','true');
+
+            getReserchmsg(paramA,item);
+            $('#researcherUsernameAmend').val(paramA.fullName);
+            $('#researcherMobileAmend').val(paramA.mobile);
+            $amendPage.show();
+            $detil.hide();
+            $(".content").hide();
+            $('.header').hide();
+        });
+        //取消修改
+        $(".cancelBtnAmend").on('click',function(){
+            $amendPage.hide();
+            $('.content').show();
+            $('.header').show();
+            $('.btnSearch').click();
+            idclear();
+        });
+        //修改中
+        $('#researcherMobileAmend').blur(function(){
+            if($('#researcherMobileAmend').val().trim()){
+                var  re = /^1\d{10}$/;
+                if(!re.test(this.value.trim())){
+                    tip('手机号码格式错误,请重新输入');
+                    $(this).val('');
+                    return
+                }
+            }
+        });
+
+
+        $('#selCounty2').change(function(){
+            $schoolid = this.value;
+        });
+        /*获取页面输入数据 获取学科学段信息*/
+        $('#addsubjectCodeAmend').on('change',function(){
+            var stageN = this.value;
+            paramA.stageCode = this.value;
+            $('#stageCodeAmend').children('option:not(:first)').remove();
+            var paramss = {
+                "stage": stageN
+            }
+
+            $.post({
+                url : basepath  +'/boss/common/getSubjectByStage',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(paramss)},
+                success:function(data){
+                    $.each(data.result,function(index,item){
+                        var options = '<option value="' + item.subjectCode + '">' + item.subjectName + '</option>';
+                        $('#stageCodeAmend').append(options);
+                    })
+                }
+            });
+        });
+        $('#stageCodeAmend').change(function(){
+            paramA.subjectCode  = this.value;
+        });
+
+        $btnAmend.on('click',function(event){
+            event.preventDefault();
+            if($('#researcherUsernameAmend').val().trim()!== ''){
+                paramA.fullName = $('#researcherUsernameAmend').val().trim();
+            }
+            if($('#researcherMobileAmend').val().trim() != ''){
+                paramA.mobile = $('#researcherMobileAmend').val().trim();
+            }
+            if($schoolid != ''){
+                paramA.areaId = $schoolid;
+            }
+            if($('#researcherPasswordAmend').val().trim()){
+                paramA.password = hex_md5($('#researcherPasswordAmend').val().trim());
+            }
+            console.log(paramA);
+            $.ajax({
+                url:basepath + '/boss/reseacher/modify',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(paramA)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        layer.closeAll();
+                        $amendPage.hide();
+                       $(".content").show();
+                        $('.header').show();
+                        tip('修改成功');
+                        idclear();
+                        window.setTimeout(function(){
+
+                            $('.btnSearch').click();
+                        },2000);
+
+                    }else if(data.httpCode == '40002'){
+                        layer.closeAll();
+                        tip('参数不全，请选择完全参数');
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        });
+
+        //获取schollid 三级联动
+        /* var $selprovince = $('#selProvice2');
+         var $selcity = $('#selCity2');
+         var $selCounty = $('#selCounty2');*/
+        var paramSchoolid= {
+            areaId :0
+        };
+        $selprovince.on('click',function(){
+            $('#selProvice2 option:first').text("省/市");
+        });
+        getarea(paramSchoolid,$selprovince,url);
+        $selprovince.change(function(){
+            $selcity.children('option:not(:first)').remove();
+            $selCounty.children('option:not(:first)').remove();
+            $selcity.children('option:first').text("市");
+            $selcity.removeAttr("disabled");
+            if(this.value == "省/市"){
+                return
+            }
+            paramSchoolid.areaId = this.value;
+            getarea(paramSchoolid,$selcity,url);
+        });
+        $selcity.change(function(){
+            $selCounty.children('option:not(:first)').remove();
+            $selCounty.children('option:first').text("区/县");
+            $selCounty.removeAttr("disabled");
+            if(this.value == "市"){
+                return
+            }
+            paramSchoolid.areaId = this.value;
+            getarea(paramSchoolid,$selCounty,url)
+        });
+        $selCounty.change(function(){
+            /* paramSchoolid.areaId = this.value;
+             getarea(paramSchoolid,$school,url);*/
+            if(this.value == "区/县"){
+                return
+            }
+            $schoolid = this.value;
+            console.log($schoolid);
+        });
+        function getarea(a,b,url){
+            $.ajax({
+                url:basepath + url,
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify(a)},
+                success:function(data){
+                    $.each(data.result,function(index,item){
+                        var options = '<option value="' + item.areaId + '">' + item.areaName + '</option>;';
+                        b.append(options);
+                    })
+                }
+            });
+        };
+        function getReserchmsg(a,b){
+            a.fullName = b.fullName;
+            a.password = b.password;
+            a.mobile = b.mobile;
+            a.areaId = b.areaId;
+            a.subjectCode  = b.subjectCode ;
+            a.stageCode  = b.stageCode ;
+            a.id = b.id;
+            getSubject(a.stageCode,a.subjectCode);//初始化学科学段信息
+        }
+        function getSubject(a,b){
+            $(" #addsubjectCodeAmend option[value='"+a+"']").attr("selected","selected");
+            $.post({
+                url : basepath  +'/boss/common/getSubjectByStage',
+                type : 'POST',
+                dataType:"json",
+                data :{params :JSON.stringify({"stage": a})},
+                success:function(data){
+                    $.each(data.result,function(index,item){
+                        var options = '<option value="' + item.subjectCode + '">' + item.subjectName + '</option>';
+                        $('#stageCodeAmend').append(options);
+                    })
+                }
+            });
+            $(" #stageCodeAmend option[value='"+b+"']").attr("selected","selected");
+        }
+
+        function idclear(){
+            $selcity.children('option:not(:first)').remove();
+            $selCounty.children('option:not(:first)').remove();
+            $selcity.children('option:first').text("市");
+            $selCounty.children('option:first').text("区/县");
+            $selprovince.children('option:first').text("value='省/市'");
+            $("#selProvice2 option[value='省/市']").prop("selected","selected")
+        }
+
+
+    });
+</script>
+</body>
+</html>

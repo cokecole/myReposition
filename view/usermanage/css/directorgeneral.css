@@ -1,0 +1,44 @@
+.headerleft{
+    width: 40%;
+    height: 80px;
+    margin-top: 22px;
+}
+.headerright{
+    width: 60%;
+    height: 80px;
+    margin-top: 22px;
+    text-align: center;
+}
+.headerText{
+    height: 100%;
+    text-align: center;
+    margin-right: 10px;
+    margin: 5px;
+}
+.headerText span{
+    line-height: 80px;
+    font-size: 18px;
+}
+.headerinput,.formstyle{
+    margin-top: 27px;
+}
+.headerinput{
+    margin-left: 20px;
+    width: 50%;
+}
+.headerright > .formstyle{
+    margin-right: 10px;
+}
+.btns >button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    margin: 0 20px 0 20px;
+}
+.proviceSelect{
+    margin-left: 10px;
+}
+.headerright > div{
+    width: 20%;
+}
