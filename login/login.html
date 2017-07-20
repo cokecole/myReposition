@@ -72,20 +72,20 @@
             params.password = hex_md5(passwordVal);
             console.log(params);
 
-//            $.ajax({
-//                url: basepath + '/boss/login/admin',
-//                type : 'POST',
-//                dataType:"json",
-//                data :{params : JSON.stringify(params)},
-//                success:function(data){
-//                    if(data.httpCode == '200'){
-//                        sessionStorage.setItem("username",usernameuserVal);
-//                        sessionStorage.setItem("access_token",data.result.access_token);
-//                        window.location.href="../index.html";
-//                    }
-//                    console.log(data);
-//                }
-//            });
+            $.ajax({
+                url: basepath + '/boss/login/admin',
+                type : 'POST',
+                dataType:"json",
+                data :{params : JSON.stringify(params)},
+                success:function(data){
+                    if(data.httpCode == '200'){
+                        sessionStorage.setItem("username",usernameuserVal);
+                        sessionStorage.setItem("access_token",data.result.access_token);
+                        window.location.href="../index.html";
+                    }
+                    console.log(data);
+                }
+            });
         })
     })
 </script>
